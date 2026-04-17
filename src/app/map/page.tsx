@@ -40,30 +40,19 @@ export default function SmartNavigationPage() {
         </div>
 
         {/* Map Content */}
-        <div className="absolute inset-0 bg-surface-container-low overflow-hidden">
-          <div className="w-full h-full relative" style={{ background: "linear-gradient(135deg, #eceef0 0%, #f2f4f6 50%, #e6e8ea 100%)" }}>
-            <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, #c3c6d7 1px, transparent 1px)", backgroundSize: "30px 30px", opacity: 0.3 }}></div>
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMAGES.safetyFloorPlan} alt="Venue floor plan" className="w-[80%] max-w-lg opacity-40 rounded-full" style={{ filter: "grayscale(0.5)" }} />
+            <div className="absolute inset-0 w-full h-full">
+              {/* Google Maps Embed using environment variable if available, otherwise a default location */}
+              <iframe
+                title="EventSync Venue Map"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "brightness(0.9) contrast(1.1)" }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY'}&q=Moscone+Center,San+Francisco,CA`}
+              ></iframe>
             </div>
-
-            {/* Route Path */}
-            <svg className="absolute inset-0 w-full h-full z-10" viewBox="0 0 400 700">
-              <path
-                d="M200 100 Q300 200 350 350 Q380 450 300 550 Q250 600 150 650"
-                fill="none"
-                stroke={navActive ? "#2563eb" : "#006a61"}
-                strokeWidth="3"
-                strokeDasharray={navActive ? "0" : "6 6"}
-                strokeLinecap="round"
-                className={navActive ? "animate-pulse-soft" : ""}
-              />
-              <circle cx="200" cy="100" r="12" fill={navActive ? "#2563eb" : "#006a61"} />
-              <circle cx="200" cy="100" r="6" fill="white" />
-              <circle cx="150" cy="650" r="8" fill="#ba1a1a" />
-            </svg>
 
             {/* Location Labels */}
             <div className="absolute top-[28%] left-[15%] z-20 flex items-center gap-2 bg-surface-container-lowest rounded-full px-3 py-2 shadow-sm">

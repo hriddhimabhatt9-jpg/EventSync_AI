@@ -6,6 +6,14 @@ import { useToast } from "@/lib/toast-context";
 import { useState } from "react";
 import Link from "next/link";
 
+/**
+ * HomePage Component
+ * 
+ * Renders the main landing page for EventSync AI, including the hero section,
+ * feature navigation, trending events, and global search.
+ * 
+ * @returns React component
+ */
 export default function HomePage() {
   const { showToast } = useToast();
   const [bookmarked, setBookmarked] = useState<Set<string>>(new Set());

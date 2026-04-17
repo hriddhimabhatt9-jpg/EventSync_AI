@@ -1,6 +1,11 @@
-// ============================================
-// EventSync AI — Mock Data for All Screens
-// ============================================
+/**
+ * ============================================
+ * EventSync AI — Mock Data for All Screens
+ * ============================================
+ * 
+ * Provides mock datasets used for UI development while the backend
+ * is under construction. Provides structured types mimicking a database.
+ */
 
 import type { Event, Speaker, User, HelpDesk, Announcement, ScheduleItem } from "@/types";
 
