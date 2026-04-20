@@ -1,8 +1,13 @@
 "use client";
 
 import AppShell from "@/components/layout/AppShell";
-import { IMAGES } from "@/lib/mock-data";
+import dynamic from "next/dynamic";
 import { useToast } from "@/lib/toast-context";
+
+const GoogleMap = dynamic(() => import("@/components/ui/GoogleMap"), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-surface-container-high animate-pulse flex items-center justify-center"><span className="material-symbols-outlined text-outline text-4xl">map</span></div>
+});
 import { useState } from "react";
 
 export default function SmartNavigationPage() {
@@ -41,17 +46,12 @@ export default function SmartNavigationPage() {
 
         {/* Map Content */}
             <div className="absolute inset-0 w-full h-full">
-              {/* Google Maps Embed using environment variable if available, otherwise a default location */}
-              <iframe
+              {/* Google Maps integration using reusable GoogleMap component */}
+              <GoogleMap
+                query="Moscone Center, San Francisco, CA"
                 title="EventSync Venue Map"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: "brightness(0.9) contrast(1.1)" }}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY'}&q=Moscone+Center,San+Francisco,CA`}
-              ></iframe>
+                style={{ filter: "brightness(0.9) contrast(1.1)" }}
+              />
             </div>
 
             {/* Location Labels */}
@@ -72,8 +72,6 @@ export default function SmartNavigationPage() {
             >
               <span className="material-symbols-outlined text-primary">layers</span>
             </button>
-          </div>
-        </div>
 
         {/* Bottom Sheet */}
         <div className="absolute bottom-0 left-0 right-0 z-30 bg-surface-container-lowest rounded-t-3xl px-6 pt-3 pb-6 shadow-cloud">

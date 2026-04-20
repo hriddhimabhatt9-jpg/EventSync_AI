@@ -1,6 +1,7 @@
 "use client";
 
 import AppShell from "@/components/layout/AppShell";
+import Image from "next/image";
 import { IMAGES, helpDesks } from "@/lib/mock-data";
 import { useToast } from "@/lib/toast-context";
 import { useModal } from "@/lib/modal-context";
@@ -104,8 +105,12 @@ export default function SafetyPage() {
             <Link href="/map" className="text-sm font-medium text-primary">Floor Map</Link>
           </div>
           <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low shadow-sm">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="w-full h-full object-cover opacity-80" src={IMAGES.safetyFloorPlan} alt="Emergency exits floor plan" />
+            <Image 
+               fill 
+               className="object-cover opacity-80" 
+               src={IMAGES.safetyFloorPlan} 
+               alt="Emergency exits floor plan" 
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             <div className="absolute top-1/4 left-1/3 p-2 bg-secondary text-white rounded-full flex items-center justify-center shadow-lg">
               <span className="material-symbols-outlined text-sm">door_open</span>
@@ -121,9 +126,8 @@ export default function SafetyPage() {
           <h3 className="text-xl font-bold tracking-tight">Nearest Help Desk</h3>
           {helpDesks.map((desk) => (
             <div key={desk.id} className="bg-surface-container-lowest rounded-xl p-5 flex items-center gap-5 shadow-sm" style={{ border: "1px solid rgba(195,198,215,0.1)" }}>
-              <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="w-full h-full object-cover" src={desk.imageUrl} alt={desk.name} />
+              <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                <Image fill className="object-cover" src={desk.imageUrl} alt={desk.name} />
               </div>
               <div className="flex-grow">
                 <h4 className="font-bold text-lg leading-tight">{desk.name}</h4>

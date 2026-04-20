@@ -1,7 +1,13 @@
 "use client";
 
 import TopAppBar from "@/components/layout/TopAppBar";
+import dynamic from "next/dynamic";
 import { featuredEvent, IMAGES } from "@/lib/mock-data";
+
+const GoogleMap = dynamic(() => import("@/components/ui/GoogleMap"), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-surface-container-high animate-pulse flex items-center justify-center"><span className="material-symbols-outlined text-outline text-4xl">map</span></div>
+});
 import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/lib/toast-context";
 import { useModal } from "@/lib/modal-context";
@@ -162,17 +168,16 @@ export default function EventDetailsPage() {
           </div>
         </section>
 
-        {/* Location Map */}
+        {/* Location Map — Google Maps Embed */}
         <section className="px-6 py-6 mb-24">
           <h2 className="text-xl font-bold mb-4">Location</h2>
           <Link href="/map" className="block w-full h-48 bg-surface-container-high rounded-xl overflow-hidden relative" style={{ border: "1px solid rgba(195,198,215,0.2)" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="Map view" className="w-full h-full object-cover grayscale opacity-60" src={IMAGES.mapPlaceholder} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-primary text-white p-3 rounded-full shadow-lg">
-                <span className="material-symbols-outlined filled">push_pin</span>
-              </div>
-            </div>
+            <GoogleMap
+              query="Grand Innovation Center, 451 Tech Plaza, San Francisco, CA"
+              title="Event Venue Location"
+              className="w-full h-full"
+              style={{ filter: "grayscale(0.3) opacity(0.85)" }}
+            />
           </Link>
         </section>
       </main>
