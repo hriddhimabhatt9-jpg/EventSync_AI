@@ -57,7 +57,40 @@ export default function ProfilePage() {
             <div className="absolute left-4 text-on-surface-variant">
               <span className="material-symbols-outlined">search</span>
             </div>
-            <input className="w-full pl-12 pr-6 py-4 bg-surface-container-high border-none rounded-full focus:outline-none focus:ring-2 focus:ring-primary text-on-surface placeholder:text-on-surface-variant text-sm font-medium" placeholder="Find upcoming events..." type="text" id="dashboard-search" aria-label="Search upcoming events" />
+            <input className="w-full pl-12 pr-6 py-4 bg-surface-container-high border-none rounded-full focus:outline-none focus:ring-2 focus:ring-primary text-on-surface placeholder:text-on-surface-variant text-sm font-medium" placeholder="Find upcoming events in India..." type="text" id="dashboard-search" aria-label="Search upcoming events" />
+          </div>
+        </section>
+
+        {/* Rewards & Points */}
+        <section className="mb-8">
+          <div className="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-6 text-white shadow-lg overflow-hidden relative">
+            <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Total Earnings</p>
+                  <h3 className="text-4xl font-extrabold">₹{user?.balance || 0}</h3>
+                </div>
+                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined filled text-yellow-400">military_tech</span>
+                  <span className="font-bold text-sm">{user?.points || 0} pts</span>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex justify-between items-end text-xs">
+                  <p className="font-bold">Next Reward Progress</p>
+                  <p className="text-white/80">{(user?.points || 0) % 20}/20 events</p>
+                </div>
+                <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-white rounded-full transition-all duration-1000" 
+                    style={{ width: `${((user?.points || 0) % 20) * 5}%` }}
+                  ></div>
+                </div>
+                <p className="text-[10px] text-white/60 italic">Earn ₹100 for every 20 events you enroll in!</p>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -81,7 +81,7 @@ export default function DiscoverPage() {
             </div>
             <div>
               <p className="text-xs font-semibold text-primary uppercase tracking-wider">Nearby You</p>
-              <p className="text-sm font-medium text-on-surface">{filtered.length} Events in San Francisco</p>
+              <p className="text-sm font-medium text-on-surface">{filtered.length} Events in Mumbai</p>
             </div>
           </div>
           <Link href="/map" className="bg-surface-container-lowest text-primary p-3 rounded-full shadow-sm hover:scale-95 transition-transform" aria-label="View map">

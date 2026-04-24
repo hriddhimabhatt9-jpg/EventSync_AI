@@ -49,6 +49,8 @@ export interface User {
   company: string;
   interests: string[];
   bio?: string;
+  points?: number;
+  balance?: number;
 }
 
 export interface NetworkingMatch {

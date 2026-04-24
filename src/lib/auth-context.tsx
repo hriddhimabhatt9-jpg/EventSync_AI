@@ -20,11 +20,9 @@ interface AuthState {
   isLoading: boolean;
 }
 
-interface AuthContextType extends AuthState {
-  login: (email: string, password: string) => Promise<boolean>;
-  loginWithGoogle: () => Promise<boolean>;
   register: (name: string, email: string, password: string, role: "attendee" | "organizer") => Promise<boolean>;
   logout: () => Promise<void>;
+  enrollInEvent: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -40,6 +38,8 @@ const defaultUser: User = {
   title: "Attendee",
   company: "",
   interests: [],
+  points: 15,
+  balance: 0,
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -160,8 +160,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const enrollInEvent = useCallback(() => {
+    setState((prev) => {
+      if (!prev.user) return prev;
+      const newPoints = (prev.user.points || 0) + 1;
+      let newBalance = prev.user.balance || 0;
+      
+      // Earn 100 Rs for every 20 events
+      if (newPoints % 20 === 0) {
+        newBalance += 100;
+      }
+
+      const updatedUser = { ...prev.user, points: newPoints, balance: newBalance };
+      if (isDemoMode) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedUser));
+      }
+      return { ...prev, user: updatedUser };
+    });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ ...state, login, loginWithGoogle, register, logout }}>
+    <AuthContext.Provider value={{ ...state, login, loginWithGoogle, register, logout, enrollInEvent }}>
       {children}
     </AuthContext.Provider>
   );

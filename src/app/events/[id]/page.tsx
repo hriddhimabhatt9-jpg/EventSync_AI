@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 
 export default function EventDetailsPage() {
   const event = featuredEvent;
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, enrollInEvent } = useAuth();
   const { showToast } = useToast();
   const { openModal, closeModal } = useModal();
   const router = useRouter();
@@ -57,8 +57,9 @@ export default function EventDetailsPage() {
         <button
           className="flex-1 gradient-primary text-white py-3 rounded-full font-bold active:scale-95 transition-transform"
           onClick={() => {
+            enrollInEvent();
             closeModal();
-            showToast("Successfully registered for the event! 🎉", "success");
+            showToast("Successfully registered for the event! 🎉 Points added to your profile.", "success");
           }}
         >
           Confirm & Pay
@@ -72,7 +73,7 @@ export default function EventDetailsPage() {
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
-      <TopAppBar showShare />
+      <TopAppBar showShare title="Event Details" />
 
       <main className="pt-16">
         {/* Hero Banner */}
@@ -85,7 +86,7 @@ export default function EventDetailsPage() {
               {event.category}
             </span>
             <h1 className="text-3xl font-extrabold text-on-surface tracking-tight leading-tight">
-              Future of Neural Interfaces 2024
+              Bharat AI Global Summit 2024
             </h1>
           </div>
         </section>
@@ -99,7 +100,7 @@ export default function EventDetailsPage() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-on-surface">September 24, 2024</p>
-                <p className="text-xs text-on-surface-variant">09:00 AM - 05:00 PM EST</p>
+                <p className="text-xs text-on-surface-variant">09:00 AM - 05:00 PM IST</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -107,8 +108,8 @@ export default function EventDetailsPage() {
                 <span className="material-symbols-outlined">location_on</span>
               </div>
               <div>
-                <p className="text-sm font-semibold text-on-surface">Grand Innovation Center</p>
-                <p className="text-xs text-on-surface-variant">451 Tech Plaza, San Francisco, CA</p>
+                <p className="text-sm font-semibold text-on-surface">Jio World Convention Centre</p>
+                <p className="text-xs text-on-surface-variant">Bandra Kurla Complex, Mumbai, India</p>
               </div>
             </div>
           </div>
@@ -173,7 +174,7 @@ export default function EventDetailsPage() {
           <h2 className="text-xl font-bold mb-4">Location</h2>
           <Link href="/map" className="block w-full h-48 bg-surface-container-high rounded-xl overflow-hidden relative" style={{ border: "1px solid rgba(195,198,215,0.2)" }}>
             <GoogleMap
-              query="Grand Innovation Center, 451 Tech Plaza, San Francisco, CA"
+              query="Jio World Convention Centre, Bandra Kurla Complex, Mumbai, India"
               title="Event Venue Location"
               className="w-full h-full"
               style={{ filter: "grayscale(0.3) opacity(0.85)" }}
@@ -189,7 +190,7 @@ export default function EventDetailsPage() {
       >
         <div className="flex-grow">
           <p className="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">Early Bird</p>
-          <p className="text-lg font-extrabold text-on-surface">$299.00</p>
+          <p className="text-lg font-extrabold text-on-surface">₹2,499.00</p>
         </div>
         <button
           onClick={handleRegister}

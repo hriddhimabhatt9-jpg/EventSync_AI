@@ -119,11 +119,11 @@ export const featuredEvent: Event = {
   description:
     "Explore the intersection of artificial intelligence and neurobiology. This year's summit brings together the world's leading minds to discuss how neural interfaces will reshape human productivity, accessibility, and digital interaction in the coming decade.",
   date: "OCT 24, 2024",
-  time: "09:00 AM - 05:00 PM EST",
-  location: "SF Jazz Center, San Francisco",
-  address: "201 Franklin St, San Francisco, CA",
-  price: 299,
-  priceLabel: "$299.00",
+  time: "09:00 AM - 05:00 PM IST",
+  location: "Jio World Convention Centre, Mumbai",
+  address: "Bandra Kurla Complex, Mumbai, Maharashtra 400098",
+  price: 2499,
+  priceLabel: "₹2,499.00",
   category: "AI Innovation",
   tags: ["#AI2024", "#NeuralTech", "#Innovation"],
   imageUrl: IMAGES.eventFeatured,
@@ -142,8 +142,8 @@ export const events: Event[] = [
     description: "Hands-on workshop exploring modern AI design patterns.",
     date: "TOMORROW",
     time: "6:00 PM",
-    location: "Creative Hub Lab",
-    address: "350 Mission St, San Francisco",
+    location: "Creative Hub Bengaluru",
+    address: "Koramangala, Bengaluru, Karnataka",
     price: null,
     priceLabel: "Free",
     category: "AI Tech",
@@ -161,10 +161,10 @@ export const events: Event[] = [
     description: "Networking event for startup founders and investors.",
     date: "OCT 26",
     time: "7:00 PM",
-    location: "The Battery SF",
-    address: "717 Battery St, San Francisco",
-    price: 25,
-    priceLabel: "$25.00",
+    location: "T-Hub, Hyderabad",
+    address: "Knowledge City, Hyderabad, Telangana",
+    price: 1500,
+    priceLabel: "₹1,500.00",
     category: "Business",
     tags: ["#Startups", "#Networking"],
     imageUrl: IMAGES.eventStartupMixer,
@@ -182,8 +182,8 @@ export const events: Event[] = [
     time: "10:00 AM",
     location: "Remote Access",
     address: "Online",
-    price: 149,
-    priceLabel: "$149.00",
+    price: 4999,
+    priceLabel: "₹4,999.00",
     category: "AI Tech",
     tags: ["#DataScience", "#ML"],
     imageUrl: IMAGES.eventDataScience,
@@ -195,24 +195,20 @@ export const events: Event[] = [
   },
 ];
 
-export const trendingEvents = [
-  {
-    id: "t1",
-    title: "Horizon Music Fest",
-    location: "Brooklyn, NY",
-    price: "$89.00",
+    title: "India Tech Fest 2024",
+    location: "Pune, Maharashtra",
+    price: "₹999.00",
     date: "AUG 24",
     imageUrl: IMAGES.eventHorizon,
   },
   {
     id: "t2",
-    title: "TechSummit AI 2024",
-    location: "San Francisco, CA",
+    title: "AI Conclave 2024",
+    location: "Bangalore, KA",
     price: "Free",
     date: "SEP 02",
     imageUrl: IMAGES.eventTech,
   },
-];
 
 // ---- Networking Users ----
 export const networkUsers: User[] = [
@@ -289,22 +285,17 @@ export const announcements: Announcement[] = [
 ];
 
 // ---- Registered Events (Dashboard) ----
-export const registeredEvents = [
-  {
-    id: "re1",
-    title: "AI Future Summit 2024",
-    location: "Tech Plaza, San Francisco",
+    location: "Jio World, Mumbai",
     imageUrl: IMAGES.eventFeatured,
     daysUntil: "In 2 Days",
   },
   {
     id: "re2",
-    title: "Neural Arts Exhibition",
-    location: "Downtown Gallery",
+    title: "Bharat Tech Expo",
+    location: "Pragati Maidan, Delhi",
     imageUrl: IMAGES.eventTech,
     daysUntil: "May 1",
   },
-];
 
 // ---- Current User ----
 export const currentUser: User = {
@@ -314,6 +305,8 @@ export const currentUser: User = {
   role: "attendee",
   avatar: IMAGES.avatarMan1,
   title: "Software Engineer",
-  company: "TechCorp",
+  company: "TechCorp India",
   interests: ["#AI", "#WebDev", "#Design"],
+  points: 15,
+  balance: 0,
 };

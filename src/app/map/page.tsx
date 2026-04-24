@@ -14,7 +14,7 @@ export default function SmartNavigationPage() {
   const { showToast } = useToast();
   const [navActive, setNavActive] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [mapLocation, setMapLocation] = useState("Moscone Center, San Francisco, CA");
+  const [mapLocation, setMapLocation] = useState("Gateway of India, Mumbai, India");
 
   const handleSearch = () => {
     if (searchInput.trim()) {
@@ -48,7 +48,7 @@ export default function SmartNavigationPage() {
           <div className="bg-surface-container-lowest rounded-full p-3 px-5 flex items-center gap-3 shadow-cloud">
             <input
               className="flex-grow bg-transparent border-none focus:outline-none text-on-surface placeholder:text-on-surface-variant text-sm font-medium"
-              placeholder="Search any place in the world..."
+              placeholder="Search any place in India or the world..."
               type="text"
               id="map-search"
               aria-label="Search locations"
