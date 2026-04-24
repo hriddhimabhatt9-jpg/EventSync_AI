@@ -13,6 +13,22 @@ import { useState } from "react";
 export default function SmartNavigationPage() {
   const { showToast } = useToast();
   const [navActive, setNavActive] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [mapLocation, setMapLocation] = useState("Moscone Center, San Francisco, CA");
+
+  const handleSearch = () => {
+    if (searchInput.trim()) {
+      setMapLocation(searchInput);
+      setNavActive(false);
+      showToast(`Showing ${searchInput}`, "success");
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   const handleStartNav = () => {
     setNavActive(true);
@@ -30,16 +46,22 @@ export default function SmartNavigationPage() {
         {/* Search Bar Overlay */}
         <div className="absolute top-4 left-4 right-4 z-20">
           <div className="bg-surface-container-lowest rounded-full p-3 px-5 flex items-center gap-3 shadow-cloud">
-            <span className="material-symbols-outlined text-outline">search</span>
             <input
               className="flex-grow bg-transparent border-none focus:outline-none text-on-surface placeholder:text-on-surface-variant text-sm font-medium"
-              placeholder="Search venue locations..."
+              placeholder="Search any place in the world..."
               type="text"
               id="map-search"
-              aria-label="Search venue locations"
+              aria-label="Search locations"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
-            <button className="text-on-surface-variant" aria-label="Voice search" onClick={() => showToast("Voice search activated. Listening...", "info")}>
-              <span className="material-symbols-outlined">mic</span>
+            <button 
+              className="text-primary hover:bg-primary/10 p-2 rounded-full transition-colors" 
+              aria-label="Search" 
+              onClick={handleSearch}
+            >
+              <span className="material-symbols-outlined">search</span>
             </button>
           </div>
         </div>
@@ -50,10 +72,10 @@ export default function SmartNavigationPage() {
               <GoogleMap
                 mode={navActive ? "directions" : "place"}
                 origin={navActive ? "Current Location" : ""}
-                destination={navActive ? "Workshop 1, Moscone Center, San Francisco, CA" : ""}
-                query={!navActive ? "Moscone Center, San Francisco, CA" : ""}
-                title="EventSync Venue Map"
-                style={{ filter: "brightness(0.9) contrast(1.1)" }}
+                destination={navActive ? mapLocation : ""}
+                query={!navActive ? mapLocation : ""}
+                title="EventSync Map"
+                style={{ filter: "brightness(1) contrast(1)" }}
               />
             </div>
 
