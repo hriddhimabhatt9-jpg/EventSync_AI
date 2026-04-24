@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Chatbot from "@/components/ui/Chatbot";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-plus-jakarta" });
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
+        <Chatbot />
       </body>
     </html>
   );

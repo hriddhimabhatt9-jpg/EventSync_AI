@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     // Distinguish validation errors from unexpected failures
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Validation Failed', details: error.errors },
+        { error: 'Validation Failed', details: error.issues },
         { status: 400, headers: securityHeaders }
       );
     }
