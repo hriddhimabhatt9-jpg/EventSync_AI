@@ -13,7 +13,13 @@ import React from "react";
 
 interface GoogleMapProps {
   /** The search query or place name (e.g. "Moscone Center, San Francisco") */
-  query: string;
+  query?: string;
+  /** Optional mode for the map embed. Defaults to "place" */
+  mode?: "place" | "directions";
+  /** Origin for directions mode */
+  origin?: string;
+  /** Destination for directions mode */
+  destination?: string;
   /** Optional title for the iframe (accessibility) */
   title?: string;
   /** Optional width — defaults to 100% */
@@ -31,7 +37,10 @@ interface GoogleMapProps {
  * Falls back to a static placeholder if no API key is configured.
  */
 export default function GoogleMap({
-  query,
+  query = "",
+  mode = "place",
+  origin = "",
+  destination = "",
   title = "Google Maps",
   width = "100%",
   height = "100%",
@@ -39,12 +48,21 @@ export default function GoogleMap({
   style,
 }: GoogleMapProps) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
-  const encodedQuery = encodeURIComponent(query);
-
-  // Construct the Maps Embed API URL
-  const mapSrc = apiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedQuery}`
-    : `https://www.google.com/maps?q=${encodedQuery}&output=embed`;
+  
+  let mapSrc = "";
+  
+  if (mode === "directions" && origin && destination) {
+    const encodedOrigin = encodeURIComponent(origin);
+    const encodedDestination = encodeURIComponent(destination);
+    mapSrc = apiKey
+      ? `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${encodedOrigin}&destination=${encodedDestination}`
+      : `https://www.google.com/maps?saddr=${encodedOrigin}&daddr=${encodedDestination}&output=embed`;
+  } else {
+    const encodedQuery = encodeURIComponent(query);
+    mapSrc = apiKey
+      ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedQuery}`
+      : `https://www.google.com/maps?q=${encodedQuery}&output=embed`;
+  }
 
   return (
     <iframe

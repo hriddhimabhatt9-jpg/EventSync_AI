@@ -48,7 +48,10 @@ export default function SmartNavigationPage() {
             <div className="absolute inset-0 w-full h-full">
               {/* Google Maps integration using reusable GoogleMap component */}
               <GoogleMap
-                query="Moscone Center, San Francisco, CA"
+                mode={navActive ? "directions" : "place"}
+                origin={navActive ? "Current Location" : ""}
+                destination={navActive ? "Workshop 1, Moscone Center, San Francisco, CA" : ""}
+                query={!navActive ? "Moscone Center, San Francisco, CA" : ""}
                 title="EventSync Venue Map"
                 style={{ filter: "brightness(0.9) contrast(1.1)" }}
               />
