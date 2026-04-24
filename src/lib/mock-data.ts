@@ -195,6 +195,9 @@ export const events: Event[] = [
   },
 ];
 
+export const trendingEvents = [
+  {
+    id: "t1",
     title: "India Tech Fest 2024",
     location: "Pune, Maharashtra",
     price: "₹999.00",
@@ -209,6 +212,7 @@ export const events: Event[] = [
     date: "SEP 02",
     imageUrl: IMAGES.eventTech,
   },
+];
 
 // ---- Networking Users ----
 export const networkUsers: User[] = [
@@ -284,7 +288,10 @@ export const announcements: Announcement[] = [
   },
 ];
 
-// ---- Registered Events (Dashboard) ----
+export const registeredEvents = [
+  {
+    id: "re1",
+    title: "Bharat AI Summit",
     location: "Jio World, Mumbai",
     imageUrl: IMAGES.eventFeatured,
     daysUntil: "In 2 Days",
@@ -296,6 +303,7 @@ export const announcements: Announcement[] = [
     imageUrl: IMAGES.eventTech,
     daysUntil: "May 1",
   },
+];
 
 // ---- Current User ----
 export const currentUser: User = {

@@ -73,7 +73,7 @@ export default function EventDetailsPage() {
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
-      <TopAppBar showShare title="Event Details" />
+      <TopAppBar showShare />
 
       <main className="pt-16">
         {/* Hero Banner */}

@@ -20,6 +20,9 @@ interface AuthState {
   isLoading: boolean;
 }
 
+interface AuthContextType extends AuthState {
+  login: (email: string, password: string) => Promise<boolean>;
+  loginWithGoogle: () => Promise<boolean>;
   register: (name: string, email: string, password: string, role: "attendee" | "organizer") => Promise<boolean>;
   logout: () => Promise<void>;
   enrollInEvent: () => void;
