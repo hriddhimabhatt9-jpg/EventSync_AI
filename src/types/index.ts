@@ -105,3 +105,11 @@ export interface Badge {
   validTo: string;
   qrCodeData: string;
 }
+export interface SafetyFacility {
+  id: string;
+  name: string;
+  location: string;
+  distance: string;
+  status: "available" | "unavailable";
+  description: string;
+}

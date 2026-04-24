@@ -7,7 +7,7 @@
  * is under construction. Provides structured types mimicking a database.
  */
 
-import type { Event, Speaker, User, HelpDesk, Announcement, ScheduleItem } from "@/types";
+import type { Event, Speaker, User, HelpDesk, Announcement, ScheduleItem, SafetyFacility } from "@/types";
 
 // ---- Image URLs (from Stitch designs) ----
 export const IMAGES = {
@@ -318,3 +318,41 @@ export const currentUser: User = {
   points: 15,
   balance: 0,
 };
+// ---- Safety Facilities ----
+export const firstAidKits: SafetyFacility[] = [
+  {
+    id: "fa1",
+    name: "Medical Kit A1",
+    location: "North Lobby, Near Hall A",
+    distance: "20m",
+    status: "available",
+    description: "Equipped with basic trauma supplies, AED, and bandages.",
+  },
+  {
+    id: "fa2",
+    name: "Medical Kit B3",
+    location: "Level 2, Near Elevator 4",
+    distance: "120m",
+    status: "available",
+    description: "Standard first aid supplies.",
+  },
+];
+
+export const quietZones: SafetyFacility[] = [
+  {
+    id: "qz1",
+    name: "Serenity Lounge",
+    location: "Room 105, 2nd Floor",
+    distance: "80m",
+    status: "available",
+    description: "Low lighting, noise-canceling environment for sensory relief.",
+  },
+  {
+    id: "qz2",
+    name: "Zen Corner",
+    location: "Back Garden, South Wing",
+    distance: "250m",
+    status: "available",
+    description: "Outdoor quiet space with natural seating.",
+  },
+];

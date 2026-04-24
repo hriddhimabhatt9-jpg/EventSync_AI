@@ -2,7 +2,7 @@
 
 import AppShell from "@/components/layout/AppShell";
 import Image from "next/image";
-import { IMAGES, helpDesks } from "@/lib/mock-data";
+import { IMAGES, helpDesks, firstAidKits, quietZones } from "@/lib/mock-data";
 import { useToast } from "@/lib/toast-context";
 import { useModal } from "@/lib/modal-context";
 import Link from "next/link";
@@ -75,6 +75,58 @@ export default function SafetyPage() {
           Cancel
         </button>
       </div>
+    );
+  };
+
+  const handleFirstAid = () => {
+    openModal(
+      "First Aid Locations",
+      <div className="space-y-4">
+        {firstAidKits.map(kit => (
+          <div key={kit.id} className="bg-surface-container-low p-4 rounded-xl flex justify-between items-center">
+            <div>
+              <p className="font-bold text-on-surface">{kit.name}</p>
+              <p className="text-xs text-on-surface-variant">{kit.location}</p>
+              <p className="text-[10px] text-primary font-bold mt-1">{kit.distance} away</p>
+            </div>
+            <button 
+              onClick={() => { closeModal(); showToast(`Navigating to ${kit.name}`, "info"); }}
+              className="bg-primary text-white p-2 rounded-full"
+            >
+              <span className="material-symbols-outlined text-sm">directions</span>
+            </button>
+          </div>
+        ))}
+      </div>,
+      <button className="w-full bg-surface-container-high py-3 rounded-full font-bold" onClick={closeModal}>Close</button>
+    );
+  };
+
+  const handleQuietZones = () => {
+    openModal(
+      "Quiet Zones",
+      <div className="space-y-4">
+        {quietZones.map(zone => (
+          <div key={zone.id} className="bg-surface-container-low p-4 rounded-xl">
+            <div className="flex justify-between items-start mb-2">
+              <div>
+                <p className="font-bold text-on-surface">{zone.name}</p>
+                <p className="text-xs text-on-surface-variant">{zone.location}</p>
+              </div>
+              <span className="bg-success/10 text-success text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Available</span>
+            </div>
+            <p className="text-xs text-on-surface-variant mb-3">{zone.description}</p>
+            <button 
+              onClick={() => { closeModal(); showToast(`Navigating to ${zone.name}`, "info"); }}
+              className="w-full bg-primary/10 text-primary py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">directions</span>
+              Navigate to Zone
+            </button>
+          </div>
+        ))}
+      </div>,
+      <button className="w-full bg-surface-container-high py-3 rounded-full font-bold" onClick={closeModal}>Close</button>
     );
   };
 
@@ -161,7 +213,7 @@ export default function SafetyPage() {
         {/* Action Grid */}
         <section className="grid grid-cols-2 gap-4">
           <button
-            onClick={() => showToast("3 First Aid Kits found nearby. Closest: 20m away.", "info")}
+            onClick={handleFirstAid}
             className="bg-surface-container-lowest p-4 rounded-xl shadow-sm space-y-2 text-left hover:shadow-cloud transition-shadow"
             style={{ border: "1px solid rgba(195,198,215,0.1)" }}
           >
@@ -170,7 +222,7 @@ export default function SafetyPage() {
             <p className="text-xs text-on-surface-variant">View locations</p>
           </button>
           <button
-            onClick={() => showToast("Quiet Zone: Room 105, 2nd Floor. Currently available.", "info")}
+            onClick={handleQuietZones}
             className="bg-surface-container-lowest p-4 rounded-xl shadow-sm space-y-2 text-left hover:shadow-cloud transition-shadow"
             style={{ border: "1px solid rgba(195,198,215,0.1)" }}
           >
