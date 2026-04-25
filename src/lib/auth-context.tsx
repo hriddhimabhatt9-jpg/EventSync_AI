@@ -26,6 +26,7 @@ interface AuthContextType extends AuthState {
   register: (name: string, email: string, password: string, role: "attendee" | "organizer") => Promise<boolean>;
   logout: () => Promise<void>;
   enrollInEvent: () => void;
+  updateUser: (data: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -43,6 +44,7 @@ const defaultUser: User = {
   interests: [],
   points: 15,
   balance: 0,
+  onboardingCompleted: false,
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -182,8 +184,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const updateUser = useCallback((data: Partial<User>) => {
+    setState((prev) => {
+      if (!prev.user) return prev;
+      const updatedUser = { ...prev.user, ...data };
+      if (isDemoMode) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedUser));
+      }
+      return { ...prev, user: updatedUser };
+    });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ ...state, login, loginWithGoogle, register, logout, enrollInEvent }}>
+    <AuthContext.Provider value={{ ...state, login, loginWithGoogle, register, logout, enrollInEvent, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

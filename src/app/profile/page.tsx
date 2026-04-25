@@ -61,6 +61,63 @@ export default function ProfilePage() {
           </div>
         </section>
 
+        {/* User Identity Section */}
+        <section className="mb-8">
+          <div className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-outline-variant/10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${user?.userType === "student" ? "bg-secondary-container text-on-secondary-container" : "bg-tertiary-container text-on-tertiary-container"}`}>
+                <span className="material-symbols-outlined text-3xl">
+                  {user?.userType === "student" ? "school" : "work"}
+                </span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">{user?.userType === "student" ? "Student Profile" : "Professional Profile"}</h3>
+                <p className="text-sm text-on-surface-variant">{user?.email}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-y-4 gap-x-2">
+              {user?.userType === "student" ? (
+                <>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">College</p>
+                    <p className="text-sm font-semibold truncate">{user.collegeName}</p>
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Semester</p>
+                    <p className="text-sm font-semibold">{user.semester}</p>
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">City</p>
+                    <p className="text-sm font-semibold">{user.city}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Role</p>
+                    <p className="text-sm font-semibold truncate">{user?.jobTitle}</p>
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Company</p>
+                    <p className="text-sm font-semibold truncate">{user?.companyName}</p>
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Experience</p>
+                    <p className="text-sm font-semibold">{user?.experience}</p>
+                  </div>
+                </>
+              )}
+              <div className="space-y-0.5">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">LinkedIn</p>
+                <p className="text-sm font-semibold text-primary truncate">
+                  {user?.linkedinId?.includes("linkedin.com") ? "View Profile" : user?.linkedinId}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Rewards & Points */}
         <section className="mb-8">
           <div className="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-6 text-white shadow-lg overflow-hidden relative">

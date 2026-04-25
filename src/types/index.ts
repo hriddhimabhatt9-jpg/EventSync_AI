@@ -51,6 +51,17 @@ export interface User {
   bio?: string;
   points?: number;
   balance?: number;
+  
+  // Onboarding fields
+  onboardingCompleted?: boolean;
+  userType?: "student" | "working";
+  collegeName?: string;
+  semester?: string;
+  linkedinId?: string;
+  city?: string;
+  jobTitle?: string;
+  companyName?: string;
+  experience?: string;
 }
 
 export interface NetworkingMatch {
